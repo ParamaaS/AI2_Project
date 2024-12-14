@@ -29,6 +29,7 @@ def findShortestWay(maze: List[List[int]], ball: List[int], hole: List[int]) -> 
             ):
                 dist[x][y] = step
                 path[x][y] = path[i][j] + d
+                # print(path[x][y])
                 if x != rh or y != ch:
                     q.append((x, y))
     return path[rh][ch] or 'impossible'
@@ -72,3 +73,23 @@ def printMaze(maze: List[List[int]], ball: List[int], hole: List[int]):
         print("1", end = " ")
     print()
     print("-" * (len(maze[0]) * 2 + 3))
+
+
+def mapDirection(direction):
+    """
+    Maps a single character direction to its full name.
+    
+    Args:
+        direction (str): A single character ('u', 'r', 'l', 'd').
+    
+    Returns:
+        str: The full name of the direction ('up', 'right', 'left', 'down').
+    """
+    mapping = {
+        'u': 'Up',
+        'r': 'Right',
+        'l': 'Left',
+        'd': 'Down'
+    }
+    
+    return mapping.get(direction.lower(), "Invalid direction")
