@@ -1,5 +1,6 @@
 import logic
 import testcase
+from colorama import Fore, Style, init
 
 def testTestcase(i):
     maze_attr = f"maze{i}"
@@ -29,9 +30,26 @@ def testTestcase(i):
 
 if __name__ == "__main__":
     print("Welcome to our main.py. If you want to leave, just type anything that will cause error.")
+    print("------------------------------")
+    print('To see preview map. Type, "prev <testcase number>"')
+    print('To see the solution. Type, "solve <testcase number>"')
     while True:
+        print("------------------------------")
         try:
-            testcaseNumber = int(input("input the testcase I want to test: "))
-            testTestcase(testcaseNumber)
+            command, testcaseNumber = input("input your command: ").split()
+            if command == "prev":
+                maze_attr = f"maze{testcaseNumber}"
+                ball_attr = f"ball{testcaseNumber}"
+                hole_attr = f"hole{testcaseNumber}"
+    
+                maze = getattr(testcase, maze_attr)
+                ball = getattr(testcase, ball_attr)
+                hole = getattr(testcase, hole_attr)
+
+                logic.printMaze(maze, ball, hole, line = False)
+            elif command == "solve":    
+                testTestcase(testcaseNumber)
+            else:
+                print("Invalid command!")
         except:
             break

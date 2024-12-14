@@ -54,25 +54,29 @@ def takeAction(maze: List[List[int]], ball: List[int], action: str):
         ball[1] += move[1]
     return ball       
 
-def printMaze(maze: List[List[int]], ball: List[int], hole: List[int]):
+def printMaze(maze: List[List[int]], ball: List[int], hole: List[int], line = True):
     for i in range(len(maze[0]) + 2):
-        print("1", end = " ")
+        print("\033[37m1\033[0m", end = " ")
     print()
     for i in range(len(maze)):
         print("1", end = " ")
         for j in range(len(maze[i])):
             if (i == ball[0] and j == ball[1]):
-                print("B", end = " ")
+                print("\033[32mB\033[0m", end = " ")
             elif (i == hole[0] and j == hole[1]):
-                print("H", end = " ")
+                print("\033[31mH\033[0m", end = " ")
             else:
-                print(str(maze[i][j]), end = " ")
-        print("1", end = " ")
+                if (maze[i][j] == 0):
+                    print("\033[90m0\033[0m", end = " ")
+                else:
+                    print("\033[37m1\033[0m", end = " ")
+        print("\033[37m1\033[0m", end = " ")
         print()
     for i in range(len(maze[0]) + 2):
-        print("1", end = " ")
+        print("\033[37m1\033[0m", end = " ")
     print()
-    print("-" * (len(maze[0]) * 2 + 3))
+    if (line):
+        print("-" * (len(maze[0]) * 2 + 3))
 
 
 def mapDirection(direction):
