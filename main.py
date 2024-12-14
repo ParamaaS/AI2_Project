@@ -12,6 +12,7 @@ def testTestcase(i):
     
     solution = logic.findShortestWay(maze, ball, hole)
     if solution == "impossible":
+        print(f"The solution is impssoble")
         return
     
     currentBall = ball
